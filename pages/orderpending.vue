@@ -1,29 +1,29 @@
 <template>
   <div>
     <v-row justify="center">
-      <v-simple-table >
-       
-          <thead>
-            <tr>
-              <th class="text-left">ชื่อ</th>
-              <th class="text-left">นามสกุล</th>
-              <th class="text-left">เบอร์โทร</th>
-              <th class="text-left">เลขบัตรประชาชน</th>
-              <th class="text-left">วันที่เริ่มจอง</th>
-              <th class="text-left">วันส่งคืน</th>
-              <th class="text-left">รวม</th>
-            </tr>
-            <tr v-for="(i, index) in list" :key="index">
-              <th class="text-left">{{i.Firstname}}</th>
-              <th class="text-left">{{i.Lastname}}</th>
-              <th class="text-left">{{i.Tel}}</th>
-              <th class="text-left">{{i.numberID}}</th>
-              <th class="text-left">{{i.DateStart}}</th>
-              <th class="text-left">{{i.DateEnd}}</th>
-              <th class="text-left">{{i.Total}}</th>
-            </tr>
-          </thead>
-       
+      <v-simple-table>
+        <thead>
+          <tr>
+            <th class="text-left">ชื่อ</th>
+            <th class="text-left">นามสกุล</th>
+            <th class="text-left">เบอร์โทร</th>
+            <th class="text-left">เลขบัตรประชาชน</th>
+            <th class="text-left">รุ่นรถ</th>
+            <th class="text-left">วันที่เริ่มจอง</th>
+            <th class="text-left">วันส่งคืน</th>
+            <th class="text-left">รวม</th>
+          </tr>
+          <tr v-for="(i, index) in list" :key="index">
+            <th class="text-left">{{ i.Firstname }}</th>
+            <th class="text-left">{{ i.Lastname }}</th>
+            <th class="text-left">{{ i.Tel }}</th>
+            <th class="text-left">{{ i.numberID }}</th>
+              <th class="text-left">{{ i.carName }}</th>
+            <th class="text-left">{{ i.DateStart }}</th>
+            <th class="text-left">{{ i.DateEnd }}</th>
+            <th class="text-left">{{ i.Total }}</th>
+          </tr>
+        </thead>
       </v-simple-table></v-row
     >
   </div>
@@ -32,19 +32,17 @@
 <script>
 import { db } from '~/plugins/firebaseConfig.js'
 export default {
-  data(){
+  data() {
     return {
-      list:'',
+      list: '',
     }
-    
-  
   },
   mounted() {
     this.getdata()
   },
-methods: {
+  methods: {
     // allowedDates: (val) => parseInt(val.split('-')[2], 10) % 2 === 0,
-   getdata() {
+    getdata() {
       db.collection('DBorders')
         .orderBy('numberID', 'asc')
         .onSnapshot((querySnapshot) => {
@@ -56,11 +54,9 @@ methods: {
           console.log(this.list)
         })
     },
-  
   },
 }
 </script>
 
 <style>
-
 </style>

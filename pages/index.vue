@@ -1,57 +1,56 @@
 <template>
   <div class="login100">
-      <v-card class="wrap-login100" color="rgba(255, 255, 255, 0.75)">
-        <v-row class="center"
-          >
-          <v-col cols="12">
-            <v-container>
-              <v-form>
-                <v-row>
-                  <v-col cols="12">
-                    <h1 class="logtitle">Admin Sign in</h1>
-                    <v-text-field
-                      v-model="email"
-                      label="E-mail"
-                      required
-                      filled
-                      rounded
-                      dense
-                      solo-inverted
-                      :rules="emailRules"
-                    ></v-text-field
-                  ></v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="password"
-                      :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-                      :type="show2 ? 'text' : 'password'"
-                      :rules="[rules.required, rules.min]"
-                      name="input-10-2"
-                      label="Password"
-                      class="input-group--focused"
-                      filled
-                      rounded
-                      dense
-                      solo-inverted
-                      @click:append="show2 = !show2"
-                    ></v-text-field></v-col
-                ></v-row>
-                <v-hover>
-                  <v-btn
+    <v-card class="wrap-login100" color="rgba(255, 255, 255, 0.75)">
+      <v-row class="center">
+        <v-col cols="12">
+          <v-container>
+            <v-form>
+              <v-row>
+                <v-col cols="12">
+                  <h1 class="logtitle">Admin Sign in</h1>
+                  <v-text-field
+                    v-model="email"
+                    label="E-mail"
+                    required
+                    filled
                     rounded
-                    class="container-btn"
-                    color="#DCB13C"
-                    @click="login()"
-                  >
-                    SIGN IN
-                  </v-btn></v-hover
+                    dense
+                    solo-inverted
+                    :rules="emailRules"
+                  ></v-text-field
+                ></v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="password"
+                    :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="show2 ? 'text' : 'password'"
+                    :rules="[rules.required, rules.min]"
+                    name="input-10-2"
+                    label="Password"
+                    class="input-group--focused"
+                    filled
+                    rounded
+                    dense
+                    solo-inverted
+                    @click:append="show2 = !show2"
+                  ></v-text-field></v-col
+              ></v-row>
+              <v-hover>
+                <v-btn
+                  rounded
+                  class="container-btn"
+                  color="#DCB13C"
+                  @click="login()"
                 >
-              </v-form>
-            </v-container>
-          </v-col>
-        </v-row>
-      </v-card>
-    </div>
+                  SIGN IN
+                </v-btn></v-hover
+              >
+            </v-form>
+          </v-container>
+        </v-col>
+      </v-row>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -73,13 +72,13 @@ export default {
         },
       },
       emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+        (v) => !!v || 'E-mail is required',
+        (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
       show1: false,
       rules: {
-      required: value => !!value || 'Required.',
-      min: v => v.length >= 8 || 'Min 8 characters'
+        required: (value) => !!value || 'Required.',
+        min: (v) => v.length >= 8 || 'Min 8 characters',
       },
     }
   },
@@ -88,18 +87,7 @@ export default {
       var user = auth.currentUser
       console.log(user === null)
     },
-    // logout() {
-    //   auth
-    //     .signOut()
-    //     .then(() => {
-    //       // Sign-out successful.
-    //       console.log('Sign-out successful')
-    //     })
-    //     .catch((error) => {
-    //       // An error happened.
-    //       console.log(error)
-    //     })
-    // },
+
     login() {
       auth
         .signInWithEmailAndPassword(this.email, this.password)
@@ -110,21 +98,19 @@ export default {
           const user = result.user
           console.log('token x : ' + token)
           console.log('user x : ' + user)
-          alert('login successful!')
-          //if (user.email == 'admin123@gmail.com') {
-            //password:123123
-           // console.log('admin')
-          //  this.$router.replace('/admin')
-         // } else if (user.email == 'owner123@gmail.com') {
-            //password:123123
-          //  console.log('owner')
-          //  this.$router.replace('/owner')
-         // } else {
-            console.log('user x') //email:hamhxm@gmail.com password:123123
+          if (user.email == 'admin@gmail.com') {
             this.$router.replace('/ShopAdmin')
-           //loginเแบบล็อคอีเมลล์ในหน้าเดียว
+            alert('login successful!')
+          } else {
+          this.$router.replace('/')
+           alert('Email or Password uncorrect!')
+          }
         })
-
+        //  this.$router.replace('/admin')
+        // } else if (user.email == 'owner123@gmail.com') {
+        //password:123123
+        //  console.log('owner')
+        //  this.$router.replace('/owner')
         .catch((error) => {
           // Handle Errors here.
           const errorCode = error.code
