@@ -35,11 +35,9 @@
           <v-toolbar-title class="body-3"> ประวัติการเช่า </v-toolbar-title>
         </v-toolbar>
         <v-footer padless>
-          <v-col class="text-center" cols="8">
+          <v-col class="text-center" cols="12">
             <v-list-item-title>จำนวนการเช่ารถยนต์ทั้งหมด</v-list-item-title>
           </v-col>
-          <v-col class="text-center" cols="4">
-            <v-list-item-title class="text-left"></v-list-item-title>
           </v-col>
         </v-footer>
         <v-simple-table height="475">
