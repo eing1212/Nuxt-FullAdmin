@@ -1,7 +1,7 @@
 <template>
   <div class="login100">
     <v-card class="wrap-login100" color="rgba(255, 255, 255, 0.75)">
-      <v-row class="center">
+      <v-row>
         <v-col cols="12">
           <v-container>
             <v-form>
@@ -160,7 +160,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 50px 50px 50px 95px;
+  padding: 50px 50px 50px 50px;
 }
 .login100 {
   width: 100%;

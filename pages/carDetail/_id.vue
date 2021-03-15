@@ -38,7 +38,6 @@
           <v-col class="text-center" cols="12">
             <v-list-item-title>จำนวนการเช่ารถยนต์ทั้งหมด</v-list-item-title>
           </v-col>
-          </v-col>
         </v-footer>
         <v-simple-table height="475">
           <template v-slot:default>
